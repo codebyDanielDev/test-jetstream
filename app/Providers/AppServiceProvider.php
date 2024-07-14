@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use Illuminate\Notifications\ChannelManager;
+use App\Channels\BaileysWhatsAppChannel;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -17,8 +20,11 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot()
     {
-        //
+        $this->app->make(ChannelManager::class)->extend('whatsapp', function ($app) {
+            return new BaileysWhatsAppChannel();
+        });
     }
+
 }

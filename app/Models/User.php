@@ -62,4 +62,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function routeNotificationForWhatsApp()
+    {
+        return $this->phone_number; // Asegúrate de que el campo 'phone_number' contiene el número de WhatsApp
+    }
 }
