@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class UserRegisteredNotification extends Notification implements ShouldQueue
+class UserLoginSuccessNotification extends Notification
 {
     use Queueable;
 
@@ -28,14 +28,13 @@ class UserRegisteredNotification extends Notification implements ShouldQueue
     {
         return ['mail', 'whatsapp'];
     }
-
     /**
      * Get the mail representation of the notification.
      */
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
+                    ->line('pepepep')
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
     }
@@ -44,12 +43,10 @@ class UserRegisteredNotification extends Notification implements ShouldQueue
         return [
             'type' => 'number',
             'message' => [
-                'text' => 'Thank you for registering! This is your notification message.',
+                'text' => 'Hubo un nuevo inicio de sesion',
             ]
         ];
     }
-
-
     /**
      * Get the array representation of the notification.
      *

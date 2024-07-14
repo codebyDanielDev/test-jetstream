@@ -9,6 +9,8 @@ use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Baileys\SessionController;
 
 
+
+use App\Http\Controllers\Components\CountryCodeController;
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -43,3 +45,11 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+
+
+//ruta para componentes de controladores de uso no autenticado
+Route::middleware([])->group(function () {
+
+    Route::get('/api/country-codes', [CountryCodeController::class, 'index']);
+
+});
