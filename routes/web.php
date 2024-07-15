@@ -58,11 +58,12 @@ Route::middleware([])->group(function () {
 use GeminiAPI\Client;
 use GeminiAPI\Resources\Parts\TextPart;
 
+//probar y profunzar despues https://github.com/google-gemini-php/client?tab=readme-ov-file#stream-generate-content
 Route::get('/test-gemini', function () {
     $apiKey = env('GEMINI_API_KEY');
     $client = Gemini::client($apiKey);
 
-    $result = $client->geminiPro()->generateContent('Hola, dime como te llamas');
+    $result = $client->geminiPro()->generateContent('dame una imagen de un gato');
     $response = [
         'result' => $result->text()
     ];
