@@ -51,3 +51,21 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware([])->group(function () {
     Route::get('/components/country-codes', [CountryCodeController::class, 'index'])->name('components.get-country-codes');
 });
+
+
+
+
+use GeminiAPI\Client;
+use GeminiAPI\Resources\Parts\TextPart;
+
+Route::get('/test-gemini', function () {
+    $apiKey = env('GEMINI_API_KEY');
+    $client = Gemini::client($apiKey);
+
+    $result = $client->geminiPro()->generateContent('Hola, dime como te llamas');
+    $response = [
+        'result' => $result->text()
+    ];
+
+    return response()->json($response);
+});
