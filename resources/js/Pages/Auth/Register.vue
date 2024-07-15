@@ -7,40 +7,57 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import axios from 'axios';
+import vSelect from 'vue-select';
+import 'vue-select/dist/vue-select.css';
 
 const form = useForm({
     name: '',
     email: '',
     phone_number: '',
-    country_code: '',
+    country_code: '' ,
     password: '',
     password_confirmation: '',
     terms: false,
 });
 
-const countryCodes = ref([]);
+const defaultOption = { dial_code: '', name: 'Seleccione su país' };
+const countryCodes = ref([defaultOption]);
+const isLoading = ref(false);
+const selectedCountry = ref(null);
 
-const fetchCountryCodes = async () => {
+const fetchCountryCodes = async (search = '') => {
+    isLoading.value = true;
     try {
-        const response = await axios.get('/api/country-codes');
-        countryCodes.value = response.data;
+        const response = await axios.get('/components/country-codes', {
+            params: { search }
+        });
+        countryCodes.value = [defaultOption, ...response.data.data];
     } catch (error) {
         console.error('Error fetching country codes:', error);
+    } finally {
+        isLoading.value = false;
     }
 };
-
-onMounted(fetchCountryCodes);
 
 const submit = () => {
     form.post(route('register'), {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };
+
+onMounted(() => fetchCountryCodes());
+
+watch(selectedCountry, (newVal) => {
+    form.country_code = newVal ? newVal.dial_code : '';
+});
 </script>
 
+
+
 <template>
+
     <Head title="Register" />
 
     <AuthenticationCard>
@@ -51,77 +68,46 @@ const submit = () => {
         <form @submit.prevent="submit">
             <div>
                 <InputLabel for="name" value="Name" />
-                <TextInput
-                    id="name"
-                    v-model="form.name"
-                    type="text"
-                    class="block w-full mt-1"
-                    required
-                    autofocus
-                    autocomplete="name"
-                />
+                <TextInput id="name" v-model="form.name" type="text" class="block w-full mt-1" required autofocus
+                    autocomplete="name" />
                 <InputError class="mt-2" :message="form.errors.name" />
             </div>
 
             <div class="mt-4">
                 <InputLabel for="email" value="Email" />
-                <TextInput
-                    id="email"
-                    v-model="form.email"
-                    type="email"
-                    class="block w-full mt-1"
-                    required
-                    autocomplete="username"
-                />
+                <TextInput id="email" v-model="form.email" type="email" class="block w-full mt-1" required
+                    autocomplete="username" />
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
             <div class="mt-4">
-                <InputLabel for="country_code" value="Country Code" /> <!-- Agregar campo country_code -->
-                <select id="country_code" v-model="form.country_code" class="block w-full mt-1">
-                    <option v-for="code in countryCodes" :key="code.code" :value="code.dial_code">
-                        {{ code.name }} ({{ code.dial_code }})
-                    </option>
-                </select>
-                <InputError class="mt-2" :message="form.errors.country_code" /> <!-- Mostrar errores de country_code -->
+                <InputLabel for="country_code" value="Country Code" />
+                <v-select :options="countryCodes" v-model="selectedCountry" label="name" placeholder="Seleccione su país"
+                    @search="fetchCountryCodes" :loading="isLoading" />
+                <InputError class="mt-2" :message="form.errors.country_code" />
             </div>
 
+
             <div class="mt-4">
-                <InputLabel for="phone_number" value="Phone Number" /> <!-- Agregar campo phone_number -->
-                <TextInput
-                    id="phone_number"
-                    v-model="form.phone_number"
-                    type="text"
-                    class="block w-full mt-1"
-                    required
-                    autocomplete="tel"
-                />
-                <InputError class="mt-2" :message="form.errors.phone_number" /> <!-- Mostrar errores de phone_number -->
+                <InputLabel for="phone_number" value="Phone Number" />
+                <TextInput id="phone_number" v-model="form.phone_number" type="text" class="block w-full mt-1" required
+                    autocomplete="tel" />
+                <InputError class="mt-2" :message="form.errors.phone_number" />
             </div>
+
+
 
             <div class="mt-4">
                 <InputLabel for="password" value="Password" />
-                <TextInput
-                    id="password"
-                    v-model="form.password"
-                    type="password"
-                    class="block w-full mt-1"
-                    required
-                    autocomplete="new-password"
-                />
+                <TextInput id="password" v-model="form.password" type="password" class="block w-full mt-1" required
+                    autocomplete="new-password" />
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
 
             <div class="mt-4">
                 <InputLabel for="password_confirmation" value="Confirm Password" />
-                <TextInput
-                    id="password_confirmation"
-                    v-model="form.password_confirmation"
-                    type="password"
-                    class="block w-full mt-1"
-                    required
-                    autocomplete="new-password"
-                />
+                <TextInput id="password_confirmation" v-model="form.password_confirmation" type="password"
+                    class="block w-full mt-1" required autocomplete="new-password" />
                 <InputError class="mt-2" :message="form.errors.password_confirmation" />
             </div>
 
@@ -131,7 +117,11 @@ const submit = () => {
                         <Checkbox id="terms" v-model:checked="form.terms" name="terms" required />
 
                         <div class="ms-2">
-                            I agree to the <a target="_blank" :href="route('terms.show')" class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">Terms of Service</a> and <a target="_blank" :href="route('policy.show')" class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">Privacy Policy</a>
+                            I agree to the <a target="_blank" :href="route('terms.show')"
+                                class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">Terms
+                                of Service</a> and <a target="_blank" :href="route('policy.show')"
+                                class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">Privacy
+                                Policy</a>
                         </div>
                     </div>
                     <InputError class="mt-2" :message="form.errors.terms" />
@@ -139,8 +129,9 @@ const submit = () => {
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <Link :href="route('login')" class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                    Already registered?
+                <Link :href="route('login')"
+                    class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+                Already registered?
                 </Link>
 
                 <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
@@ -150,3 +141,19 @@ const submit = () => {
         </form>
     </AuthenticationCard>
 </template>
+
+<style>
+.vue-select .vs__dropdown-menu {
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+}
+
+.vue-select .vs__dropdown-menu li {
+    color: #1f2937;
+}
+
+.vue-select .vs__dropdown-menu li:hover {
+    background-color: #e5e7eb;
+}
+</style>

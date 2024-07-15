@@ -49,7 +49,5 @@ Route::middleware(['auth'])->group(function () {
 
 //ruta para componentes de controladores de uso no autenticado
 Route::middleware([])->group(function () {
-
-    Route::get('/api/country-codes', [CountryCodeController::class, 'index']);
-
+    Route::get('/components/country-codes', [CountryCodeController::class, 'index'])->name('components.get-country-codes');
 });

@@ -3,18 +3,23 @@
 namespace App\Http\Controllers\Components;
 
 use App\Http\Controllers\Controller;
+use App\Models\CountryCode;
 use Illuminate\Http\Request;
 
 class CountryCodeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $countryCodes = [
-            ['code' => 'US', 'name' => 'United States', 'dial_code' => '+1'],
-            ['code' => 'PE', 'name' => 'Peru', 'dial_code' => '+51'],
-            ['code' => 'GB', 'name' => 'United Kingdom', 'dial_code' => '+44'],
-            // Agrega más países según sea necesario
-        ];
+        $query = CountryCode::query();
+
+        if ($request->has('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%')
+                  ->orWhere('dial_code', 'like', '%' . $request->search . '%');
+        }
+
+        $countryCodes = $query->select('code', 'name', 'dial_code')
+                              ->orderBy('name', 'asc') // Ordena alfabéticamente de A a Z
+                              ->paginate(15); // Cambia este valor según sea necesario
 
         return response()->json($countryCodes);
     }

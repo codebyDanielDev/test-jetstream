@@ -2,7 +2,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
-use App\Rules\PhoneNumber;
+use App\Rules\PhoneNumberRule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -23,7 +23,7 @@ class CreateNewUser implements CreatesNewUsers
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
-            'phone_number' => ['required', 'string', new PhoneNumber($input['country_code'])],
+            'phone_number' => ['required', 'string', new PhoneNumberRule($input['country_code']), 'unique:users'],
             'country_code' => ['required', 'string'],
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
