@@ -67,6 +67,10 @@ class User extends Authenticatable
     }
     public function routeNotificationForWhatsApp()
     {
-        return $this->phone_number; // Asegúrate de que el campo 'phone_number' contiene el número de WhatsApp
+        // Quitar el símbolo "+" del código de país si está presente
+        $countryCode = ltrim($this->country_code, '+');
+
+        // Combina el código de país y el número de teléfono
+        return $countryCode . $this->phone_number;
     }
 }

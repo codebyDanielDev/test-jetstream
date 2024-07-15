@@ -44,9 +44,9 @@ class BaileysWhatsAppChannel
                 'x-api-key' => config('baileys.api_key'),
                 'Content-Type' => 'application/json'
             ])
-            ->timeout(config('baileys.timeout'))
-            ->retry(config('baileys.retries'))
-            ->get(config('baileys.base_url') . '/sessions');
+                ->timeout(config('baileys.timeout'))
+                ->retry(config('baileys.retries'))
+                ->get(config('baileys.base_url') . '/sessions');
 
             if ($response->failed()) {
                 Log::error(self::LOG_FAILED_SESSION_RETRIEVAL, [
@@ -82,9 +82,11 @@ class BaileysWhatsAppChannel
                 'x-api-key' => config('baileys.api_key'),
                 'Content-Type' => 'application/json'
             ])->post(config('baileys.base_url') . '/' . $sessionId . '/messages/send', [
-                'jid' => $phoneNumber,
-                'type' => $message['type'],
-                'message' => $message['message']
+                'jid' => $phoneNumber . '@s.whatsapp.net',
+                'type' => 'number',
+                'message' => [
+                    'text' => $message['message'],
+                ]
             ]);
 
             if ($response->failed()) {
