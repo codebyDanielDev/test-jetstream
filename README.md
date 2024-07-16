@@ -24,21 +24,25 @@
     </a>
 </p>
 
-## About Laravel
+## Mejoras de implementacion con Laravel 11 y Jetstream
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Este proyecto está construido sobre Laravel 11 utilizando Jetstream como la base del proyecto. He realizado varias modificaciones para agregar una gran cantidad de funcionalidades adicionales.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
+- [Laravel 11](https://laravel.com).
+- [Jetstream](https://jetstream.laravel.com/introduction.html).
+- Simple WhatsApp REST API with multiple device support  usando Bayles[Bayles](https://github.com/nizarfadlan/baileys-api) con el fork de [Nizarfadlan](https://github.com/nizarfadlan)
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+### Instalación y Configuración
+Instalación y Configuración
+Clonar el repositorio:
+
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/tu-usuario/tu-repositorio.git
+   cd tu-repositorio
+   ```
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
