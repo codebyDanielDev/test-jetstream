@@ -12,6 +12,11 @@ class Dashboard extends Controller
 {
     public function index(Request $request)
     {
+        // Verificar si Baileys está habilitado
+        if (!config('baileys.enabled')) {
+            return Inertia::render('Dashboard');
+        }
+
         // Obtener el correo del usuario autenticado
         $userEmail = Auth::user()->email;
 
