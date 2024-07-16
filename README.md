@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-<p align="center"><img src="/art/logo.svg" alt="Logo Laravel Jetstream"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/laravel/jetstream/5.x/art/logo.svg" alt="Logo Laravel Jetstream"></p>
 
 <p align="center">
     <a href="https://github.com/laravel/jetstream/actions">
