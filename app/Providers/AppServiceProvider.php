@@ -6,6 +6,8 @@ use Illuminate\Support\ServiceProvider;
 
 use Illuminate\Notifications\ChannelManager;
 use App\Channels\BaileysWhatsAppChannel;
+use App\Services\GptService;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,7 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(GptService::class, function ($app) {
+            return new GptService();
+        });
     }
 
     /**

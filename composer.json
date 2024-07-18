@@ -15,6 +15,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/telescope": "^5.1",
         "laravel/tinker": "^2.9",
+        "openai-php/laravel": "^0.10.1",
         "predis/predis": "^2.2",
         "tightenco/ziggy": "^2.0"
     },
@@ -31,7 +32,11 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Helpers/NotificationHelper.php"
+        ]
+
     },
     "autoload-dev": {
         "psr-4": {

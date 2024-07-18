@@ -6,6 +6,8 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
+use App\Helpers\NotificationHelper;
+
 class BaileysWhatsAppChannel
 {
     const AUTHENTICATED_STATUS = 'AUTHENTICATED';
@@ -16,18 +18,23 @@ class BaileysWhatsAppChannel
 
     public function send($notifiable, Notification $notification)
     {
-        if (!config('baileys.enabled')) {
-            Log::info('Baileys WhatsApp notifications are disabled.');
-            return;
-        }
-
         try {
+            // Obtener el mensaje de la notificación
             $message = $notification->toWhatsApp($notifiable);
             $phoneNumber = $notifiable->routeNotificationFor('whatsapp');
 
+            // Verificar que el número de teléfono esté disponible
+            if (!$phoneNumber) {
+                Log::warning('No WhatsApp phone number found for notifiable.');
+                return;
+            }
+
+            // Obtener la sesión basada en el email del notifiable
             $session = $this->getSessionFromEmail($notifiable->email);
 
+            // Verificar si la sesión está autenticada
             if ($this->isSessionAuthenticated($session)) {
+                // Enviar la notificación
                 $this->sendNotification($session['id'], $phoneNumber, $message);
             } else {
                 Log::warning(self::LOG_SESSION_NOT_FOUND . $notifiable->email);
@@ -36,7 +43,6 @@ class BaileysWhatsAppChannel
             Log::error('Exception in BaileysWhatsAppChannel: ' . $e->getMessage());
         }
     }
-
     private function getSessionFromEmail($email)
     {
         try {

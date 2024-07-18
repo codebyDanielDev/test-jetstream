@@ -11,12 +11,16 @@ class UserRegisteredNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    protected $gptMessage;
+
     /**
      * Create a new notification instance.
+     *
+     * @param string $gptMessage
      */
-    public function __construct()
+    public function __construct(string $gptMessage)
     {
-        //
+        $this->gptMessage = $gptMessage;
     }
 
     /**
@@ -35,17 +39,26 @@ class UserRegisteredNotification extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->subject('¡Bienvenido a nuestra plataforma!')
+                    ->greeting('¡Bienvenido a nuestra plataforma!')
+                    ->line($this->gptMessage)
+                    ->line('---')
+                    ->line('**Nota:** Este mensaje ha sido generado automáticamente por un sistema de inteligencia artificial. Podría contener errores o inexactitudes.')
+                    ->line('Si tiene alguna pregunta o necesita asistencia, no dude en contactarnos.')
+                    ->action('Visite nuestro sitio web', url('/'))
+                    ->line('Gracias por usar nuestra aplicación!')
+                    ->salutation('Saludos cordiales, El equipo de soporte.');
     }
     public function toWhatsApp($notifiable)
     {
         return [
             'type' => 'number',
-            'message' => [
-                'text' => 'Thank you for registering! This is your notification message.',
-            ]
+            'message' => "¡Bienvenido a nuestra plataforma!\n\n" .
+                         $this->gptMessage . "\n\n" .
+                         "*Nota:* Este mensaje ha sido generado automáticamente por un sistema de inteligencia artificial. Podría contener errores o inexactitudes.\n\n" .
+                         "Si tiene alguna pregunta o necesita asistencia, no dude en contactarnos.\n\n" .
+                         "Gracias por usar nuestra aplicación!\n\n" .
+                         "Saludos cordiales,\nEl equipo de soporte.",
         ];
     }
 
