@@ -34,6 +34,39 @@ Este proyecto está construido sobre Laravel 11 utilizando Jetstream como la bas
 - Simple WhatsApp REST API with multiple device support  usando Bayles[Bayles](https://github.com/nizarfadlan/baileys-api) con el fork de [Nizarfadlan](https://github.com/nizarfadlan)
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
+
+## Módulos
+
+### 1. Autenticación y Autorización
+- **Multi-factor Authentication (MFA)**: Implementar diferentes métodos de MFA, como SMS, aplicaciones de autenticación y correos electrónicos.
+- **OAuth Integrations**: Integrar con varios proveedores de OAuth como Google, Facebook, Twitter y LinkedIn.
+- **Roles y Permisos**: Crear un sistema de roles y permisos detallado para controlar el acceso a diferentes partes de la aplicación.
+- **Registro de Inicios de Sesión**: Mantener un registro detallado de los inicios de sesión de los usuarios, incluyendo IPs, dispositivos y ubicaciones.
+- **Detección de Actividad Sospechosa**: Implementar alertas para actividades sospechosas como inicios de sesión desde ubicaciones inusuales o múltiples intentos fallidos de inicio de sesión.
+- **Autenticación de un Solo Uso (OTP)**: Implementar OTP mediante SMS o correo electrónico.
+
+### 2. Gestión de Usuarios
+- **Perfiles Públicos y Privados**: Configuración granular de visibilidad de información del perfil.
+- **Historial de Actividad del Usuario**: Registrar y mostrar un historial detallado de las actividades del usuario dentro de la aplicación.
+- **Eliminación de Cuenta**: Implementar un proceso seguro y reversible para la eliminación de cuentas de usuario.
+- **Desactivación de Cuenta**: Permitir a los usuarios desactivar temporalmente su cuenta.
+
+### 3. Notificaciones
+- **Notificaciones Personalizadas**: Creación de reglas de notificación personalizadas.
+
+### 4. Interfaz de Usuario
+- **Componentes Personalizables**: Personalización de componentes de la interfaz de usuario mediante configuraciones y plantillas.
+- **Dashboards Personalizados**: Creación de dashboards personalizados con widgets y gráficos.
+- **Filtros Avanzados**: Implementación de filtros avanzados en listados y tablas.
+- **Accesos Directos**: Configuración de accesos directos para acciones comunes.
+
+### 5. Integraciones
+- **Integración con Redes Sociales**: Compartir contenido en redes sociales directamente desde la aplicación.
+- **Importación y Exportación de Datos**: Facilitar la importación y exportación de datos en formatos populares.
+- **Integración con Herramientas de Terceros**: Integración con herramientas como Google Analytics y CRMs.
+- **Soporte para Webhooks**: Conexión con otros sistemas mediante webhooks para recibir eventos en tiempo real.
+
+
 ## Requisitos
 
 1. **PHP 8.3**: Laravel 11 requiere PHP 8.3 o superior.
