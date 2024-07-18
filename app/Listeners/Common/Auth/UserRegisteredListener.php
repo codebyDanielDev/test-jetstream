@@ -3,13 +3,14 @@
 namespace App\Listeners\Common\Auth;
 
 use Illuminate\Auth\Events\Registered;
-
 use App\Notifications\Common\Auth\UserRegisteredNotification;
+use App\Gpt\Notifications\GptUserRegisteredNotification;
+use App\Services\GptService;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UserRegisteredListener
+class UserRegisteredListener //implements ShouldQueue
 {
-
     /**
      * Create the event listener.
      */
@@ -31,7 +32,18 @@ class UserRegisteredListener
 
         if ($user instanceof \App\Models\User && method_exists($user, 'notify')) {
             try {
-                $user->notify(new UserRegisteredNotification());
+                // Crear una instancia del servicio y de la notificación GPT
+                $gptService = new GptService();
+                $gptNotification = new GptUserRegisteredNotification($gptService);
+
+                // Generar el mensaje dinámico
+                $gptMessage = $gptNotification->generateMessage();
+
+                // Crear la notificación con el mensaje generado
+                $userNotification = new UserRegisteredNotification($gptMessage);
+
+                // Enviar la notificación al usuario
+                $user->notify($userNotification);
             } catch (\Exception $e) {
                 // Log notification failure
                 Log::error('Failed to send UserRegisteredNotification: ' . $e->getMessage(), ['user_id' => $user->id]);

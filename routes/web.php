@@ -70,3 +70,21 @@ Route::get('/test-gemini', function () {
 
     return response()->json($response);
 });
+
+
+use App\Services\GptService;
+use App\Gpt\Chats\xd\ChatExample;
+
+Route::get('/test-chat', function (GptService $gptService) {
+    // Instancia la clase ChatExample y ejecuta su método handle
+    $chatExample = new ChatExample($gptService);
+
+    try {
+        ob_start();
+        $chatExample->handle();
+        $output = ob_get_clean();
+        return response()->json(['response' => $output]);
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+});
