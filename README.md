@@ -35,6 +35,9 @@ Este proyecto está construido sobre Laravel 11 utilizando Jetstream como la bas
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
 
+## Caracteristicas
+traduccion
+
 ## Módulos
 
 ### 1. Autenticación y Autorización
@@ -202,7 +205,9 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 - **[byte5](https://byte5.de)**
 - **[OP.GG](https://op.gg)**
 
-## Contributing
+## Paquetes que se usaron:
+
+https://vue-i18n.intlify.dev/guide/installation.html
 
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
