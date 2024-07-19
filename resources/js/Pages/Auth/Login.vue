@@ -7,6 +7,9 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import { useI18n } from 'vue-i18n'; // Importar useI18n
+
+const { t } = useI18n(); // Desestructurar la función t
 
 defineProps({
     canResetPassword: Boolean,
@@ -30,25 +33,25 @@ const submit = () => {
 </script>
 
 <template>
-    <Head title="Log in" />
+    <Head :title="t('auth.login.title')" />
 
     <AuthenticationCard>
         <template #logo>
             <AuthenticationCardLogo />
         </template>
 
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
+        <div v-if="status" class="mb-4 text-sm font-medium text-green-600 dark:text-green-400">
             {{ status }}
         </div>
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" :value="t('auth.login.email')" />
                 <TextInput
                     id="email"
                     v-model="form.email"
                     type="email"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     required
                     autofocus
                     autocomplete="username"
@@ -57,12 +60,12 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+                <InputLabel for="password" :value="t('auth.login.password')" />
                 <TextInput
                     id="password"
                     v-model="form.password"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     required
                     autocomplete="current-password"
                 />
@@ -72,17 +75,17 @@ const submit = () => {
             <div class="block mt-4">
                 <label class="flex items-center">
                     <Checkbox v-model:checked="form.remember" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
+                    <span class="text-sm text-gray-600 ms-2 dark:text-gray-400">{{ t('auth.login.remember_me') }}</span>
                 </label>
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                    Forgot your password?
+                <Link v-if="canResetPassword" :href="route('password.request')" class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+                    {{ t('auth.login.forgot_password') }}
                 </Link>
 
                 <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
+                    {{ t('auth.login.login_button') }}
                 </PrimaryButton>
             </div>
         </form>

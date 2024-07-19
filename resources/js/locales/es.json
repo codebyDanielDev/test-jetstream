@@ -1,0 +1,12 @@
+{
+    "auth": {
+      "login": {
+        "title": "Iniciar sesión",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "remember_me": "Recuérdame",
+        "forgot_password": "¿Olvidaste tu contraseña?",
+        "login_button": "Iniciar sesión"
+      }
+    }
+  }
