@@ -1,12 +1,180 @@
 {
     "auth": {
-      "login": {
-        "title": "Log in",
-        "email": "Email",
-        "password": "Password",
-        "remember_me": "Remember me",
-        "forgot_password": "Forgot your password?",
-        "login_button": "Log in"
-      }
+        "login": {
+            "title": "Log in",
+            "email": "Email",
+            "password": "Password",
+            "remember_me": "Remember me",
+            "forgot_password": "Forgot your password?",
+            "login_button": "Log in"
+        },
+        "register": {
+            "title": "Register",
+            "name": "Name",
+            "email": "Email",
+            "phone_number": "Phone Number",
+            "country_code": "Country Code",
+            "country_code_placeholder": "Select your country",
+            "password": "Password",
+            "password_confirmation": "Confirm Password",
+            "terms": "I agree to the",
+            "terms_of_service": "Terms of Service",
+            "privacy_policy": "Privacy Policy",
+            "already_registered": "Already registered?",
+            "register_button": "Register",
+            "and": "and"
+        },
+        "forgot_password": {
+            "title": "Forgot Password",
+            "description": "Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.",
+            "email": "Email",
+            "email_reset_link": "Email Password Reset Link",
+            "status": "Password reset link sent successfully."
+        },
+        "confirm_password": {
+            "title": "Secure Area",
+            "description": "This is a secure area of the application. Please confirm your password before continuing.",
+            "password": "Password",
+            "confirm_button": "Confirm"
+        },
+        "reset_password": {
+            "title": "Reset Password",
+            "email": "Email",
+            "password": "Password",
+            "password_confirmation": "Confirm Password",
+            "reset_button": "Reset Password"
+        },
+        "profile": {
+            "title": "Profile",
+            "update_profile_information": {
+                "title": "Profile Information",
+                "description": "Update your account's profile information and email address.",
+                "photo": "Photo",
+                "name": "Name",
+                "email": "Email",
+                "phone_number": "Phone Number",
+                "select_new_photo": "Select A New Photo",
+                "remove_photo": "Remove Photo",
+                "email_unverified": "Your email address is unverified.",
+                "resend_verification": "Click here to re-send the verification email.",
+                "verification_link_sent": "A new verification link has been sent to your email address.",
+                "save": "Save",
+                "saved": "Saved."
+            },
+            "update_password": {
+                "title": "Update Password",
+                "description": "Ensure your account is using a long, random password to stay secure.",
+                "current_password": "Current Password",
+                "new_password": "New Password",
+                "confirm_password": "Confirm Password",
+                "save": "Save",
+                "saved": "Saved."
+            },
+            "two_factor_authentication": {
+                "title": "Two Factor Authentication",
+                "description": "Add additional security to your account using two factor authentication.",
+                "enabled": "You have enabled two factor authentication.",
+                "disabled": "You have not enabled two factor authentication.",
+                "finish_enabling": "Finish enabling two factor authentication.",
+                "description_2": "When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone's Google Authenticator application.",
+                "qr_code": "To finish enabling two factor authentication, scan the following QR code using your phone's authenticator application or enter the setup key and provide the generated OTP code.",
+                "setup_key": "Setup Key",
+                "code": "Code",
+                "recovery_codes": "Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.",
+                "regenerate_recovery_codes": "Regenerate Recovery Codes",
+                "show_recovery_codes": "Show Recovery Codes",
+                "disable": "Disable",
+                "confirm": "Confirm",
+                "enable": "Enable",
+                "cancel": "Cancel"
+            },
+            "logout_other_browser_sessions": {
+                "title": "Log Out Other Browser Sessions",
+                "description": "Manage and log out your active sessions on other browsers and devices.",
+                "content": "If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.",
+                "this_device": "This device",
+                "last_active": "Last active",
+                "log_out_other_browser_sessions": "Log Out Other Browser Sessions",
+                "enter_password": "Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.",
+                "password": "Password",
+                "cancel": "Cancel",
+                "done": "Done."
+            },
+            "delete_user": {
+                "title": "Delete Account",
+                "description": "Permanently delete your account.",
+                "content": "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.",
+                "delete_account": "Delete Account",
+                "are_you_sure": "Are you sure you want to delete your account? Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.",
+                "password": "Password",
+                "cancel": "Cancel",
+                "delete": "Delete"
+            },
+            "sessions_whatsapp": {
+                "title": "WhatsApp Sessions",
+                "description": "Manage your connected WhatsApp sessions.",
+                "content": "If necessary, you can log out of all your other WhatsApp sessions across all your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.",
+                "no_sessions": "No active WhatsApp sessions.",
+                "log_out_other_browser_sessions": "Log Out All Sessions",
+                "disconnect": "Disconnect",
+                "connected": "Currently connected to WhatsApp. If you disconnect your account, you will not be able to send WhatsApp messages or issue notifications.",
+                "connect": "Connect",
+                "connect_whatsapp": "Connect with WhatsApp",
+                "qr_code": "To connect your WhatsApp account, scan the QR code below using the WhatsApp application on your phone.",
+                "loading": "Loading...",
+                "cancel": "Cancel",
+                "status": "Status"
+            }
+        }
+    },
+    "api_tokens": {
+        "title": " ingles cdTokens de API",
+        "create_token": {
+            "title": "Crear Token de API",
+            "description": "Los tokens de API permiten que los servicios de terceros se autentiquen con nuestra aplicación en tu nombre.",
+            "name": "Nombre",
+            "permissions": "Permisos",
+            "created": "Creado.",
+            "create": "Crear"
+        },
+        "manage_tokens": {
+            "title": "Gestionar Tokens de API",
+            "description": "Puedes eliminar cualquiera de tus tokens existentes si ya no los necesitas.",
+            "last_used": "Última vez usado {{ time }}",
+            "permissions": "Permisos",
+            "delete": "Eliminar"
+        },
+        "modals": {
+            "token": {
+                "title": "Token de API",
+                "content": "Por favor, copia tu nuevo token de API. Por tu seguridad, no se mostrará nuevamente.",
+                "close": "Cerrar"
+            },
+            "permissions": {
+                "title": "Permisos del Token de API",
+                "save": "Guardar",
+                "cancel": "Cancelar"
+            },
+            "delete": {
+                "title": "Eliminar Token de API",
+                "content": "¿Estás seguro de que deseas eliminar este token de API?",
+                "delete": "Eliminar",
+                "cancel": "Cancelar"
+            }
+        }
+    },
+    "app": {
+        "navigation": {
+            "dashboard": "Panel de Control",
+            "manage_team": "Gestionar Equipo",
+            "team_settings": "Configuración del Equipo",
+            "create_new_team": "Crear Nuevo Equipo",
+            "switch_teams": "Cambiar de Equipo",
+            "profile": "Perfil",
+            "api_tokens": "Tokens API",
+            "logout": "Cerrar Sesión",
+            "manage_account": "Gestionar Cuenta"
+        }
     }
-  }
+
+}

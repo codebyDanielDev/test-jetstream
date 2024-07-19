@@ -8,6 +8,9 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps({
     user: Object,
@@ -17,7 +20,7 @@ const form = useForm({
     _method: 'PUT',
     name: props.user.name,
     email: props.user.email,
-    phone_number: props.user.phone_number, // Añadir el campo de número de teléfono
+    phone_number: props.user.phone_number,
     photo: null,
 });
 
@@ -48,7 +51,7 @@ const selectNewPhoto = () => {
 const updatePhotoPreview = () => {
     const photo = photoInput.value.files[0];
 
-    if (! photo) return;
+    if (!photo) return;
 
     const reader = new FileReader();
 
@@ -79,11 +82,11 @@ const clearPhotoFileInput = () => {
 <template>
     <FormSection @submitted="updateProfileInformation">
         <template #title>
-            Profile Information
+            {{ t('profile.update_profile_information.title') }}
         </template>
 
         <template #description>
-            Update your account's profile information and email address.
+            {{ t('profile.update_profile_information.description') }}
         </template>
 
         <template #form>
@@ -98,7 +101,7 @@ const clearPhotoFileInput = () => {
                     @change="updatePhotoPreview"
                 >
 
-                <InputLabel for="photo" value="Photo" />
+                <InputLabel for="photo" :value="t('profile.update_profile_information.photo')" />
 
                 <!-- Current Profile Photo -->
                 <div v-show="!photoPreview" class="mt-2">
@@ -114,7 +117,7 @@ const clearPhotoFileInput = () => {
                 </div>
 
                 <SecondaryButton class="mt-2 me-2" type="button" @click.prevent="selectNewPhoto">
-                    Select A New Photo
+                    {{ t('profile.update_profile_information.select_new_photo') }}
                 </SecondaryButton>
 
                 <SecondaryButton
@@ -123,7 +126,7 @@ const clearPhotoFileInput = () => {
                     class="mt-2"
                     @click.prevent="deletePhoto"
                 >
-                    Remove Photo
+                    {{ t('profile.update_profile_information.remove_photo') }}
                 </SecondaryButton>
 
                 <InputError :message="form.errors.photo" class="mt-2" />
@@ -131,7 +134,7 @@ const clearPhotoFileInput = () => {
 
             <!-- Name -->
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="name" value="Name" />
+                <InputLabel for="name" :value="t('profile.update_profile_information.name')" />
                 <TextInput
                     id="name"
                     v-model="form.name"
@@ -145,7 +148,7 @@ const clearPhotoFileInput = () => {
 
             <!-- Email -->
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" :value="t('profile.update_profile_information.email')" />
                 <TextInput
                     id="email"
                     v-model="form.email"
@@ -159,7 +162,7 @@ const clearPhotoFileInput = () => {
 
                 <div v-if="$page.props.jetstream.hasEmailVerification && user.email_verified_at === null">
                     <p class="mt-2 text-sm dark:text-white">
-                        Your email address is unverified.
+                        {{ t('profile.update_profile_information.email_unverified') }}
 
                         <Link
                             :href="route('verification.send')"
@@ -168,19 +171,19 @@ const clearPhotoFileInput = () => {
                             class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                             @click.prevent="sendEmailVerification"
                         >
-                            Click here to re-send the verification email.
+                            {{ t('profile.update_profile_information.resend_verification') }}
                         </Link>
                     </p>
 
                     <div v-show="verificationLinkSent" class="mt-2 text-sm font-medium text-green-600 dark:text-green-400">
-                        A new verification link has been sent to your email address.
+                        {{ t('profile.update_profile_information.verification_link_sent') }}
                     </div>
                 </div>
             </div>
 
             <!-- Phone Number -->
             <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="phone_number" value="Phone Number" />
+                <InputLabel for="phone_number" :value="t('profile.update_profile_information.phone_number')" />
                 <TextInput
                     id="phone_number"
                     v-model="form.phone_number"
@@ -196,11 +199,11 @@ const clearPhotoFileInput = () => {
 
         <template #actions>
             <ActionMessage :on="form.recentlySuccessful" class="me-3">
-                Saved.
+                {{ t('profile.update_profile_information.saved') }}
             </ActionMessage>
 
             <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Save
+                {{ t('profile.update_profile_information.save') }}
             </PrimaryButton>
         </template>
     </FormSection>

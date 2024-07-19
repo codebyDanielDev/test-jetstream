@@ -7,10 +7,12 @@ import TwoFactorAuthenticationForm from '@/Pages/Profile/Partials/TwoFactorAuthe
 import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm.vue';
 import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm.vue';
 
-
-
 import AddSessionWhatsapp from '@/Pages/Profile/Partials/AddSessionWhatsapp.vue';
 import ListGetSessionWhatsapp from '@/Pages/Profile/Partials/ListGetSessionWhatsapp.vue';
+
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 defineProps({
     confirmsTwoFactorAuthentication: Boolean,
@@ -19,10 +21,10 @@ defineProps({
 </script>
 
 <template>
-    <AppLayout title="Profile">
+    <AppLayout :title="t('profile.title')">
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-                Profile
+                {{ t('profile.title') }}
             </h2>
         </template>
 
@@ -35,27 +37,21 @@ defineProps({
                 </div>
 
                 <template v-if="$page.props.jetstream.hasAccountDeletionFeatures">
-
                     <AddSessionWhatsapp class="mt-10 sm:mt-0" />
                     <SectionBorder />
-
                 </template>
-
-
 
                 <ListGetSessionWhatsapp :sessions="sessions" class="mt-10 sm:mt-0" />
                 <SectionBorder />
 
                 <div v-if="$page.props.jetstream.canUpdatePassword">
                     <UpdatePasswordForm class="mt-10 sm:mt-0" />
-
                     <SectionBorder />
                 </div>
 
                 <div v-if="$page.props.jetstream.canManageTwoFactorAuthentication">
                     <TwoFactorAuthenticationForm :requires-confirmation="confirmsTwoFactorAuthentication"
                         class="mt-10 sm:mt-0" />
-
                     <SectionBorder />
                 </div>
 
@@ -63,7 +59,6 @@ defineProps({
 
                 <template v-if="$page.props.jetstream.hasAccountDeletionFeatures">
                     <SectionBorder />
-
                     <DeleteUserForm class="mt-10 sm:mt-0" />
                 </template>
             </div>

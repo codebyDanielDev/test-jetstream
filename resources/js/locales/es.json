@@ -1,12 +1,179 @@
 {
     "auth": {
-      "login": {
-        "title": "Iniciar sesión",
-        "email": "Correo electrónico",
-        "password": "Contraseña",
-        "remember_me": "Recuérdame",
-        "forgot_password": "¿Olvidaste tu contraseña?",
-        "login_button": "Iniciar sesión"
-      }
+        "login": {
+            "title": "Iniciar sesión",
+            "email": "Correo electrónico",
+            "password": "Contraseña",
+            "remember_me": "Recuérdame",
+            "forgot_password": "¿Olvidaste tu contraseña?",
+            "login_button": "Iniciar sesión"
+        },
+        "register": {
+            "title": "Registrar",
+            "name": "Nombre",
+            "email": "Correo electrónico",
+            "phone_number": "Número de teléfono",
+            "country_code": "Código de país",
+            "country_code_placeholder": "Seleccione su país",
+            "password": "Contraseña",
+            "password_confirmation": "Confirmar contraseña",
+            "terms": "Acepto los",
+            "terms_of_service": "Términos de Servicio",
+            "privacy_policy": "Política de Privacidad",
+            "already_registered": "¿Ya estás registrado?",
+            "register_button": "Registrar",
+            "and": "y"
+        },
+        "forgot_password": {
+            "title": "Olvidé mi contraseña",
+            "description": "¿Olvidaste tu contraseña? No hay problema. Solo déjanos saber tu dirección de correo electrónico y te enviaremos un enlace para restablecer tu contraseña.",
+            "email": "Correo electrónico",
+            "email_reset_link": "Enviar enlace de restablecimiento de contraseña",
+            "status": "Enlace de restablecimiento de contraseña enviado con éxito."
+        },
+        "confirm_password": {
+            "title": "Área segura",
+            "description": "Esta es un área segura de la aplicación. Por favor confirma tu contraseña antes de continuar.",
+            "password": "Contraseña",
+            "confirm_button": "Confirmar"
+        },
+        "reset_password": {
+            "title": "Restablecer contraseña",
+            "email": "Correo electrónico",
+            "password": "Contraseña",
+            "password_confirmation": "Confirmar contraseña",
+            "reset_button": "Restablecer contraseña"
+        }
+    },
+    "profile": {
+        "title": "Perfil",
+        "update_profile_information": {
+            "title": "Información del perfil",
+            "description": "Actualiza la información del perfil y la dirección de correo electrónico de tu cuenta.",
+            "photo": "Foto",
+            "name": "Nombre",
+            "email": "Correo electrónico",
+            "phone_number": "Número de teléfono",
+            "select_new_photo": "Seleccionar una nueva foto",
+            "remove_photo": "Eliminar foto",
+            "email_unverified": "Tu dirección de correo electrónico no está verificada.",
+            "resend_verification": "Haz clic aquí para reenviar el correo de verificación.",
+            "verification_link_sent": "Un nuevo enlace de verificación ha sido enviado a tu dirección de correo electrónico.",
+            "save": "Guardar",
+            "saved": "Guardado."
+        },
+        "update_password": {
+            "title": "Actualizar contraseña",
+            "description": "Asegúrate de que tu cuenta está usando una contraseña larga y aleatoria para mantenerla segura.",
+            "current_password": "Contraseña actual",
+            "new_password": "Nueva contraseña",
+            "confirm_password": "Confirmar contraseña",
+            "save": "Guardar",
+            "saved": "Guardado."
+        },
+        "two_factor_authentication": {
+            "title": "Autenticación de dos factores",
+            "description": "Añade seguridad adicional a tu cuenta usando la autenticación de dos factores.",
+            "enabled": "Has habilitado la autenticación de dos factores.",
+            "disabled": "No has habilitado la autenticación de dos factores.",
+            "finish_enabling": "Finaliza la habilitación de la autenticación de dos factores.",
+            "description_2": "Cuando la autenticación de dos factores está habilitada, se te pedirá un token seguro y aleatorio durante la autenticación. Puedes obtener este token desde la aplicación Google Authenticator de tu teléfono.",
+            "qr_code": "Para finalizar la habilitación de la autenticación de dos factores, escanea el siguiente código QR usando la aplicación de autenticación de tu teléfono o introduce la clave de configuración y proporciona el código OTP generado.",
+            "setup_key": "Clave de configuración",
+            "code": "Código",
+            "recovery_codes": "Guarda estos códigos de recuperación en un gestor de contraseñas seguro. Pueden ser usados para recuperar el acceso a tu cuenta si pierdes tu dispositivo de autenticación de dos factores.",
+            "regenerate_recovery_codes": "Regenerar códigos de recuperación",
+            "show_recovery_codes": "Mostrar códigos de recuperación",
+            "disable": "Deshabilitar",
+            "confirm": "Confirmar",
+            "enable": "Habilitar",
+            "cancel": "Cancelar"
+        },
+        "logout_other_browser_sessions": {
+            "title": "Cerrar sesión en otros navegadores",
+            "description": "Gestiona y cierra tus sesiones activas en otros navegadores y dispositivos.",
+            "content": "Si es necesario, puedes cerrar sesión en todas tus demás sesiones de navegador en todos tus dispositivos. Algunas de tus sesiones recientes están listadas a continuación; sin embargo, esta lista puede no ser exhaustiva. Si sientes que tu cuenta ha sido comprometida, también deberías actualizar tu contraseña.",
+            "this_device": "Este dispositivo",
+            "last_active": "Última actividad",
+            "log_out_other_browser_sessions": "Cerrar sesión en otros navegadores",
+            "enter_password": "Por favor, introduce tu contraseña para confirmar que deseas cerrar sesión en tus otros dispositivos.",
+            "password": "Contraseña",
+            "cancel": "Cancelar",
+            "done": "Hecho."
+        },
+        "delete_user": {
+            "title": "Eliminar cuenta",
+            "description": "Eliminar tu cuenta permanentemente.",
+            "content": "Una vez que tu cuenta sea eliminada, todos sus recursos y datos serán eliminados permanentemente. Antes de eliminar tu cuenta, por favor descarga cualquier dato o información que desees retener.",
+            "delete_account": "Eliminar cuenta",
+            "are_you_sure": "¿Estás seguro de que quieres eliminar tu cuenta? Una vez que tu cuenta sea eliminada, todos sus recursos y datos serán eliminados permanentemente. Por favor, introduce tu contraseña para confirmar que deseas eliminar permanentemente tu cuenta.",
+            "password": "Contraseña",
+            "cancel": "Cancelar",
+            "delete": "Eliminar"
+        },
+        "sessions_whatsapp": {
+            "title": "Sesiones de WhatsApp",
+            "description": "Gestiona tus sesiones de WhatsApp conectadas.",
+            "content": "Si es necesario, puedes cerrar sesión en todas tus demás sesiones de WhatsApp en todos tus dispositivos. Algunas de tus sesiones recientes están listadas a continuación; sin embargo, esta lista puede no ser exhaustiva. Si sientes que tu cuenta ha sido comprometida, también deberías actualizar tu contraseña.",
+            "no_sessions": "No hay sesiones activas de WhatsApp.",
+            "log_out_other_browser_sessions": "Cerrar todas las sesiones",
+            "disconnect": "Desconectar",
+            "connected": "Actualmente conectado a WhatsApp. Si desconecta su cuenta, no podrá enviar mensajes de WhatsApp ni emitir notificaciones.",
+            "connect": "Conectar",
+            "connect_whatsapp": "Conectar con WhatsApp",
+            "qr_code": "Para conectar su cuenta de WhatsApp, escanee el código QR a continuación usando la aplicación de WhatsApp en su teléfono.",
+            "loading": "Cargando...",
+            "cancel": "Cancelar",
+            "status": "Estado"
+        }
+    },
+    "api_tokens": {
+        "title": "Tokens de API",
+        "create_token": {
+            "title": "Crear Token de API",
+            "description": "Los tokens de API permiten que los servicios de terceros se autentiquen con nuestra aplicación en tu nombre.",
+            "name": "Nombre",
+            "permissions": "Permisos",
+            "created": "Creado.",
+            "create": "Crear"
+        },
+        "manage_tokens": {
+            "title": "Gestionar Tokens de API",
+            "description": "Puedes eliminar cualquiera de tus tokens existentes si ya no los necesitas.",
+            "last_used": "Última vez usado {{ time }}",
+            "permissions": "Permisos",
+            "delete": "Eliminar"
+        },
+        "modals": {
+            "token": {
+                "title": "Token de API",
+                "content": "Por favor, copia tu nuevo token de API. Por tu seguridad, no se mostrará nuevamente.",
+                "close": "Cerrar"
+            },
+            "permissions": {
+                "title": "Permisos del Token de API",
+                "save": "Guardar",
+                "cancel": "Cancelar"
+            },
+            "delete": {
+                "title": "Eliminar Token de API",
+                "content": "¿Estás seguro de que deseas eliminar este token de API?",
+                "delete": "Eliminar",
+                "cancel": "Cancelar"
+            }
+        }
+    },
+    "app": {
+        "navigation": {
+            "dashboard": "Panel de Control",
+            "manage_team": "Gestionar Equipo",
+            "team_settings": "Configuración del Equipo",
+            "create_new_team": "Crear Nuevo Equipo",
+            "switch_teams": "Cambiar de Equipo",
+            "profile": "Perfil",
+            "api_tokens": "Tokens API",
+            "logout": "Cerrar Sesión",
+            "manage_account": "Gestionar Cuenta"
+        }
     }
-  }
+}

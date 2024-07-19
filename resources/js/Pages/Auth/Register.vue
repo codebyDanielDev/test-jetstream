@@ -11,6 +11,9 @@ import { ref, onMounted, watch } from 'vue';
 import axios from 'axios';
 import vSelect from 'vue-select';
 import 'vue-select/dist/vue-select.css';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const form = useForm({
     name: '',
@@ -22,7 +25,7 @@ const form = useForm({
     terms: false,
 });
 
-const defaultOption = { dial_code: '', name: 'Seleccione su país' };
+const defaultOption = { dial_code: '', name: t('auth.register.country_code_placeholder') };
 const countryCodes = ref([defaultOption]);
 const isLoading = ref(false);
 const selectedCountry = ref(null);
@@ -54,11 +57,8 @@ watch(selectedCountry, (newVal) => {
 });
 </script>
 
-
-
 <template>
-
-    <Head title="Register" />
+    <Head :title="t('auth.register.title')" />
 
     <AuthenticationCard>
         <template #logo>
@@ -67,47 +67,38 @@ watch(selectedCountry, (newVal) => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="name" value="Name" />
-                <TextInput id="name" v-model="form.name" type="text" class="block w-full mt-1" required autofocus
-                    autocomplete="name" />
+                <InputLabel for="name" :value="t('auth.register.name')" />
+                <TextInput id="name" v-model="form.name" type="text" class="block w-full mt-1" required autofocus autocomplete="name" />
                 <InputError class="mt-2" :message="form.errors.name" />
             </div>
 
             <div class="mt-4">
-                <InputLabel for="email" value="Email" />
-                <TextInput id="email" v-model="form.email" type="email" class="block w-full mt-1" required
-                    autocomplete="username" />
+                <InputLabel for="email" :value="t('auth.register.email')" />
+                <TextInput id="email" v-model="form.email" type="email" class="block w-full mt-1" required autocomplete="username" />
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
             <div class="mt-4">
-                <InputLabel for="country_code" value="Country Code" />
-                <v-select :options="countryCodes" v-model="selectedCountry" label="name" placeholder="Seleccione su país"
-                    @search="fetchCountryCodes" :loading="isLoading" />
+                <InputLabel for="country_code" :value="t('auth.register.country_code')" />
+                <v-select :options="countryCodes" v-model="selectedCountry" label="name" :placeholder="t('auth.register.country_code_placeholder')" @search="fetchCountryCodes" :loading="isLoading" />
                 <InputError class="mt-2" :message="form.errors.country_code" />
             </div>
 
-
             <div class="mt-4">
-                <InputLabel for="phone_number" value="Phone Number" />
-                <TextInput id="phone_number" v-model="form.phone_number" type="text" class="block w-full mt-1" required
-                    autocomplete="tel" />
+                <InputLabel for="phone_number" :value="t('auth.register.phone_number')" />
+                <TextInput id="phone_number" v-model="form.phone_number" type="text" class="block w-full mt-1" required autocomplete="tel" />
                 <InputError class="mt-2" :message="form.errors.phone_number" />
             </div>
 
-
-
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-                <TextInput id="password" v-model="form.password" type="password" class="block w-full mt-1" required
-                    autocomplete="new-password" />
+                <InputLabel for="password" :value="t('auth.register.password')" />
+                <TextInput id="password" v-model="form.password" type="password" class="block w-full mt-1" required autocomplete="new-password" />
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
-                <TextInput id="password_confirmation" v-model="form.password_confirmation" type="password"
-                    class="block w-full mt-1" required autocomplete="new-password" />
+                <InputLabel for="password_confirmation" :value="t('auth.register.password_confirmation')" />
+                <TextInput id="password_confirmation" v-model="form.password_confirmation" type="password" class="block w-full mt-1" required autocomplete="new-password" />
                 <InputError class="mt-2" :message="form.errors.password_confirmation" />
             </div>
 
@@ -115,27 +106,21 @@ watch(selectedCountry, (newVal) => {
                 <InputLabel for="terms">
                     <div class="flex items-center">
                         <Checkbox id="terms" v-model:checked="form.terms" name="terms" required />
-
                         <div class="ms-2">
-                            I agree to the <a target="_blank" :href="route('terms.show')"
-                                class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">Terms
-                                of Service</a> and <a target="_blank" :href="route('policy.show')"
-                                class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">Privacy
-                                Policy</a>
+                            {{ t('auth.register.terms') }} <a target="_blank" :href="route('terms.show')" class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">{{ t('auth.register.terms_of_service') }}</a> {{ t('auth.register.and') }} <a target="_blank" :href="route('policy.show')" class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">{{ t('auth.register.privacy_policy') }}</a>
                         </div>
                     </div>
-                    <InputError class="mt-2" :message="form.errors.terms" />
                 </InputLabel>
+                <InputError class="mt-2" :message="form.errors.terms" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <Link :href="route('login')"
-                    class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                Already registered?
+                <Link :href="route('login')" class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+                    {{ t('auth.register.already_registered') }}
                 </Link>
 
                 <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Register
+                    {{ t('auth.register.register_button') }}
                 </PrimaryButton>
             </div>
         </form>

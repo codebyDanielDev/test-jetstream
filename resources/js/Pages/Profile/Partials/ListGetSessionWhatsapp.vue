@@ -9,6 +9,9 @@ import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const sessions = ref([]);
 const form = useForm({
@@ -57,18 +60,16 @@ onMounted(() => {
 <template>
     <ActionSection>
         <template #title>
-            Sesiones de WhatsApp
+            {{ t('profile.sessions_whatsapp.title') }}
         </template>
 
         <template #description>
-            Gestiona tus sesiones de WhatsApp conectadas.
+            {{ t('profile.sessions_whatsapp.description') }}
         </template>
 
         <template #content>
             <div class="max-w-xl text-sm text-gray-600 dark:text-gray-400">
-                Si es necesario, puedes cerrar sesión en todas tus demás sesiones de WhatsApp en todos tus dispositivos.
-                Algunas de tus sesiones recientes están listadas a continuación; sin embargo, esta lista puede no ser
-                exhaustiva. Si sientes que tu cuenta ha sido comprometida, también deberías actualizar tu contraseña.
+                {{ t('profile.sessions_whatsapp.content') }}
             </div>
 
             <div v-if="sessions.length > 0" class="mt-5 space-y-4">
@@ -79,10 +80,10 @@ onMounted(() => {
                             {{ session.id }}
                         </div>
                         <div class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                            Estado:
+                            {{ t('profile.sessions_whatsapp.status') }}:
                             <span v-if="session.status === 'AUTHENTICATED'"
-                                class="font-semibold text-green-600">Autenticado</span>
-                            <span v-else class="font-semibold text-blue-600">Conectado</span>
+                                class="font-semibold text-green-600">{{ t('profile.sessions_whatsapp.connected') }}</span>
+                            <span v-else class="font-semibold text-blue-600">{{ t('profile.sessions_whatsapp.connected') }}</span>
                         </div>
                     </div>
                     <div class="ml-auto">
@@ -90,39 +91,38 @@ onMounted(() => {
                         <!-- FALTA AGREGAR ESTO -->
                         <!-- <PrimaryButton @click="disconnectSession(session.id)"
                             class="text-white bg-red-600 hover:bg-red-700">
-                            Desconectar
+                            {{ t('profile.sessions_whatsapp.disconnect') }}
                         </PrimaryButton> -->
                     </div>
                 </div>
             </div>
 
             <div v-else class="mt-5">
-                <p class="text-sm text-gray-600 dark:text-gray-400">No hay sesiones activas de WhatsApp.</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">{{ t('profile.sessions_whatsapp.no_sessions') }}</p>
             </div>
 
             <div class="flex items-center mt-5">
                 <PrimaryButton @click="confirmLogout">
-                    Cerrar todas las sesiones
+                    {{ t('profile.sessions_whatsapp.log_out_other_browser_sessions') }}
                 </PrimaryButton>
 
                 <ActionMessage :on="form.recentlySuccessful" class="ml-3">
-                    Listo.
+                    {{ t('profile.logout_other_browser_sessions.done') }}
                 </ActionMessage>
             </div>
 
             <!-- Log Out Other Devices Confirmation Modal -->
             <DialogModal :show="confirmingLogout" @close="closeModal">
                 <template #title>
-                    Cerrar sesión en otros dispositivos
+                    {{ t('profile.sessions_whatsapp.log_out_other_browser_sessions') }}
                 </template>
 
                 <template #content>
-                    Por favor, introduce tu contraseña para confirmar que deseas cerrar sesión en tus otros
-                    dispositivos.
+                    {{ t('profile.logout_other_browser_sessions.enter_password') }}
 
                     <div class="mt-4">
                         <TextInput ref="passwordInput" v-model="form.password" type="password" class="block w-3/4 mt-1"
-                            placeholder="Contraseña" autocomplete="current-password"
+                            placeholder="{{ t('profile.logout_other_browser_sessions.password') }}" autocomplete="current-password"
                             @keyup.enter="logoutOtherBrowserSessions" />
 
                         <InputError :message="form.errors.password" class="mt-2" />
@@ -131,12 +131,12 @@ onMounted(() => {
 
                 <template #footer>
                     <SecondaryButton @click="closeModal">
-                        Cancelar
+                        {{ t('profile.logout_other_browser_sessions.cancel') }}
                     </SecondaryButton>
 
                     <PrimaryButton class="ml-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
                         @click="logoutOtherBrowserSessions">
-                        Cerrar sesión en otros dispositivos
+                        {{ t('profile.sessions_whatsapp.log_out_other_browser_sessions') }}
                     </PrimaryButton>
                 </template>
             </DialogModal>

@@ -1,38 +1,38 @@
 <template>
     <ActionSection>
         <template #title>
-            Conectar con WhatsApp
+            {{ t('profile.sessions_whatsapp.connect_whatsapp') }}
         </template>
 
         <template #description>
-            Conecte con WhatsApp para el envío de notificaciones.
+            {{ t('profile.sessions_whatsapp.description') }}
         </template>
 
         <template #content>
             <div class="max-w-xl text-sm text-gray-600 dark:text-gray-400" v-if="!isConnected">
-                Conecte su cuenta de WhatsApp para recibir notificaciones directamente en su aplicación.
+                {{ t('profile.sessions_whatsapp.content') }}
             </div>
             <div class="max-w-xl text-sm text-gray-600 dark:text-gray-400" v-else>
-                Actualmente conectado a WhatsApp. Si desconecta su cuenta, no podrá enviar mensajes de WhatsApp ni emitir notificaciones.
+                {{ t('profile.sessions_whatsapp.connected') }}
             </div>
 
             <div class="mt-5">
                 <PrimaryButton v-if="!isConnected" @click="connectWhatsApp" class="text-white bg-red-600 hover:bg-red-700">
-                    Conectar
+                    {{ t('profile.sessions_whatsapp.connect') }}
                 </PrimaryButton>
                 <DangerButton v-if="isConnected" @click="disconnectWhatsApp" class="text-white bg-gray-600 hover:bg-gray-700">
-                    Desconectar
+                    {{ t('profile.sessions_whatsapp.disconnect') }}
                 </DangerButton>
             </div>
 
             <DialogModal :show="showModal" @close="closeModal">
                 <template #title>
-                    Conectar con WhatsApp
+                    {{ t('profile.sessions_whatsapp.connect_whatsapp') }}
                 </template>
 
                 <template #content>
                     <p class="text-gray-600 dark:text-gray-400">
-                        Para conectar su cuenta de WhatsApp, escanee el código QR a continuación usando la aplicación de WhatsApp en su teléfono.
+                        {{ t('profile.sessions_whatsapp.qr_code') }}
                     </p>
                     <div class="flex justify-center mt-4">
                         <div v-if="loading" class="flex items-center justify-center w-48 h-48 border-2 border-red-600">
@@ -47,7 +47,7 @@
 
                 <template #footer>
                     <SecondaryButton @click="closeModal" class="mr-2 text-gray-800 bg-gray-200 hover:bg-gray-300">
-                        Cancelar
+                        {{ t('profile.sessions_whatsapp.cancel') }}
                     </SecondaryButton>
                 </template>
             </DialogModal>
@@ -64,6 +64,9 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 import DangerButton from '@/Components/DangerButton.vue';
 import DialogModal from '@/Components/DialogModal.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const showModal = ref(false);
 const isConnected = ref(false);
