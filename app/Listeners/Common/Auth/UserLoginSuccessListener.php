@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
 use App\Notifications\Common\Auth\UserLoginSuccessNotification;
 
-class UserLoginSuccessListener
+class UserLoginSuccessListener implements ShouldQueue
 {
     /**
      * Create the event listener.

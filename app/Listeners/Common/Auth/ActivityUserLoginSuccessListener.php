@@ -8,7 +8,8 @@ use Spatie\Activitylog\Models\Activity;
 use App\Models\User; // Asegúrate de importar el modelo User
 use Illuminate\Support\Facades\Request;
 
-class ActivityUserLoginSuccessListener
+class ActivityUserLoginSuccessListener implements ShouldQueue
+
 {
     /**
      * Create the event listener.

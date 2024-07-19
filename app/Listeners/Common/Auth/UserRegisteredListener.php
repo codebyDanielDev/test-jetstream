@@ -9,7 +9,7 @@ use App\Services\GptService;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UserRegisteredListener //implements ShouldQueue
+class UserRegisteredListener implements ShouldQueue
 {
     /**
      * Create the event listener.

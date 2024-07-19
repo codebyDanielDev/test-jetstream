@@ -9,7 +9,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Spatie\Activitylog\Models\Activity;
 use App\Models\User;
 
-class ActivityUserLogoutListener
+class ActivityUserLogoutListener implements ShouldQueue
+
 {
     protected $request;
 
