@@ -13,6 +13,7 @@
             "name": "Nombre",
             "email": "Correo electrónico",
             "phone_number": "Número de teléfono",
+            "username":"Nombre de usuario",
             "country_code": "Código de país",
             "country_code_placeholder": "Seleccione su país",
             "password": "Contraseña",

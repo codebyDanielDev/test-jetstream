@@ -12,6 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 use App\Observers\UserObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 #[ObservedBy([UserObserver::class])]
 class User extends Authenticatable
@@ -21,6 +22,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use Sluggable;
 
     /**
      * The attributes that are mass assignable.
@@ -31,11 +33,21 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'username',
         'phone_number',
         'country_code',
-
     ];
 
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'username',
+                'onUpdate' => true, // Si deseas permitir la actualización del slug cuando el username cambie
+                'unique' => true, // Asegura que cada slug sea único
+            ]
+        ];
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

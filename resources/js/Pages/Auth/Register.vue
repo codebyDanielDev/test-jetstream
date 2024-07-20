@@ -18,8 +18,9 @@ const { t } = useI18n();
 const form = useForm({
     name: '',
     email: '',
+    username: '', // Añade el campo username
     phone_number: '',
-    country_code: '' ,
+    country_code: '',
     password: '',
     password_confirmation: '',
     terms: false,
@@ -76,6 +77,12 @@ watch(selectedCountry, (newVal) => {
                 <InputLabel for="email" :value="t('auth.register.email')" />
                 <TextInput id="email" v-model="form.email" type="email" class="block w-full mt-1" required autocomplete="username" />
                 <InputError class="mt-2" :message="form.errors.email" />
+            </div>
+
+            <div class="mt-4">
+                <InputLabel for="username" :value="t('auth.register.username')" /> <!-- Nuevo campo -->
+                <TextInput id="username" v-model="form.username" type="text" class="block w-full mt-1" required autocomplete="username" /> <!-- Nuevo campo -->
+                <InputError class="mt-2" :message="form.errors.username" /> <!-- Nuevo campo -->
             </div>
 
             <div class="mt-4">
