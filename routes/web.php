@@ -11,6 +11,7 @@ use App\Http\Controllers\Baileys\SessionController;
 
 
 use App\Http\Controllers\Components\CountryCodeController;
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -31,7 +32,11 @@ Route::get('/', function () {
 // });
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
 
 
     Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
@@ -41,8 +46,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/sessions/status', [SessionController::class, 'sessionStatus'])->name('whatsapp-sessions.status');
     Route::delete('/sessions/delete', [SessionController::class, 'deleteSession'])->name('whatsapp-sessions.destroy');
     Route::get('/sessions', [SessionController::class, 'listSessions'])->name('whatsapp-sessions.list');
-
-
+    
 });
 
 
