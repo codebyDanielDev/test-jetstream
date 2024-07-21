@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\Sessions\GetSession;
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\Verify\VerificationController;
 
 use App\Http\Controllers\Baileys\SessionController;
 
@@ -38,7 +39,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
 
-    
+
     Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
 
 
@@ -51,6 +52,9 @@ Route::middleware([
 
 
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/verification/check', [VerificationController::class, 'check'])->name('verification.check');
+});
 //ruta para componentes de controladores de uso no autenticado
 Route::middleware([])->group(function () {
     Route::get('/components/country-codes', [CountryCodeController::class, 'index'])->name('components.get-country-codes');

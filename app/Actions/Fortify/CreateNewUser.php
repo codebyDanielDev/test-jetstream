@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Jetstream\Jetstream;
+use App\Models\UserProfile;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -29,13 +30,22 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        return User::create([
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
-            'username' => $input['username'], 
+            'username' => $input['username'],
             'password' => Hash::make($input['password']),
             'phone_number' => $input['phone_number'],
             'country_code' => $input['country_code'],
         ]);
+
+        // Crear perfil de usuario automáticamente
+        UserProfile::create([
+            'user_id' => $user->id,
+            'profile_visibility' => 'public', // Puedes ajustar el valor predeterminado según tus necesidades
+        ]);
+
+        return $user;
     }
+
 }

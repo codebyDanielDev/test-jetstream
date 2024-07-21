@@ -13,7 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Observers\UserObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Cviebrock\EloquentSluggable\Sluggable;
-use Spatie\Permission\Traits\HasRoles; 
+use Spatie\Permission\Traits\HasRoles;
 #[ObservedBy([UserObserver::class])]
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -34,6 +34,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
         'email',
         'password',
         'username',
+        'last_name',
         'phone_number',
         'country_code',
     ];
@@ -88,5 +89,10 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
         // Combina el código de país y el número de teléfono
         return $countryCode . $this->phone_number;
+    }
+        // Relación uno a uno
+    public function profile()
+    {
+        return $this->hasOne(UserProfile::class);
     }
 }
