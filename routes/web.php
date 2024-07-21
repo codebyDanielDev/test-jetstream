@@ -38,7 +38,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
 
-
+    
     Route::get('/dashboard', [Dashboard::class, 'index'])->name('dashboard');
 
 
@@ -46,7 +46,7 @@ Route::middleware([
     Route::get('/sessions/status', [SessionController::class, 'sessionStatus'])->name('whatsapp-sessions.status');
     Route::delete('/sessions/delete', [SessionController::class, 'deleteSession'])->name('whatsapp-sessions.destroy');
     Route::get('/sessions', [SessionController::class, 'listSessions'])->name('whatsapp-sessions.list');
-    
+
 });
 
 

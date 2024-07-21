@@ -13,7 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Observers\UserObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Cviebrock\EloquentSluggable\Sluggable;
-
+use Spatie\Permission\Traits\HasRoles; 
 #[ObservedBy([UserObserver::class])]
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -23,7 +23,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
     use Notifiable;
     use TwoFactorAuthenticatable;
     use Sluggable;
-
+    use HasRoles;
     /**
      * The attributes that are mass assignable.
      *
