@@ -6,7 +6,14 @@
             "password": "Contraseña",
             "remember_me": "Recuérdame",
             "forgot_password": "¿Olvidaste tu contraseña?",
-            "login_button": "Iniciar sesión"
+            "login_button": "Iniciar sesión",
+            "title_welcome":"Bienvenido",
+            "title_description":"¿No tienes una cuenta?  ",
+            "sign_in_with_google":"Iniciar sesión con Google",
+            "sign_in_with_apple":"Iniciar sesión con Apple",
+            "register":"Registrate"
+
+
         },
         "register": {
             "title": "Registrar",

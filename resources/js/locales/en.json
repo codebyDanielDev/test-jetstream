@@ -6,7 +6,14 @@
             "password": "Password",
             "remember_me": "Remember me",
             "forgot_password": "Forgot your password?",
-            "login_button": "Log in"
+            "login_button": "Log in",
+            "title_welcome":"Welcome back",
+            "title_description":"Start your website in seconds. Don’t have an account?",
+            "sign_in_with_google":"Sign in with Google",
+            "sign_in_with_apple":"Sign in with Apple",
+            "register":"Register"
+
+
         },
         "register": {
             "title": "Register",
