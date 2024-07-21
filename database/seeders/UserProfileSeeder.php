@@ -12,6 +12,8 @@ class UserProfileSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \App\Models\User::factory(300)
+            ->has(\App\Models\UserProfile::factory(), 'profile')
+            ->create();
     }
 }
