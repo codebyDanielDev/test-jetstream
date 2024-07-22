@@ -6,12 +6,12 @@
         "build": "vite build"
     },
     "devDependencies": {
-        "@inertiajs/vue3": "^1.0.14",
+        "@inertiajs/vue3": "^1.2.0",
         "@tailwindcss/forms": "^0.5.7",
         "@tailwindcss/typography": "^0.5.10",
         "@vitejs/plugin-vue": "^5.0.0",
         "autoprefixer": "^10.4.16",
-        "axios": "^1.6.4",
+        "axios": "^1.7.2",
         "chokidar": "^3.6.0",
         "laravel-vite-plugin": "^1.0",
         "postcss": "^8.4.32",
@@ -20,6 +20,7 @@
         "vue": "^3.3.13"
     },
     "dependencies": {
+        "laravel-precognition-vue-inertia": "^0.5.6",
         "vue-i18n": "^9.13.1",
         "vue-select": "^4.0.0-beta.6"
     }
