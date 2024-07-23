@@ -126,6 +126,7 @@ Clonar el repositorio:
     php artisan serve
     npm run dev
     php artisan horizon
+    php artisan reverb:start
     ```
     Adicional a ello en su proyecto [Baileys API](https://github.com/Danielowoow/baileys-api) mantenerlo encendido.
 
