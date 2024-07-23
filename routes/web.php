@@ -96,3 +96,9 @@ Route::get('/test-chat', function (GptService $gptService) {
         return response()->json(['error' => $e->getMessage()], 500);
     }
 });
+
+use App\Events\TestEvent;
+Route::get('/broadcast-test', function () {
+    event(new TestEvent('Hello, Reverb!'));
+    return 'Event has been broadcasted!';
+});

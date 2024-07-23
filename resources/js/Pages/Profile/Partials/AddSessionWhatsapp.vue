@@ -1,60 +1,3 @@
-<template>
-    <ActionSection>
-        <template #title>
-            {{ t('profile.sessions_whatsapp.connect_whatsapp') }}
-        </template>
-
-        <template #description>
-            {{ t('profile.sessions_whatsapp.description') }}
-        </template>
-
-        <template #content>
-            <div class="max-w-xl text-sm text-gray-600 dark:text-gray-400" v-if="!isConnected">
-                {{ t('profile.sessions_whatsapp.content') }}
-            </div>
-            <div class="max-w-xl text-sm text-gray-600 dark:text-gray-400" v-else>
-                {{ t('profile.sessions_whatsapp.connected') }}
-            </div>
-
-            <div class="mt-5">
-                <PrimaryButton v-if="!isConnected" @click="connectWhatsApp" class="text-white bg-red-600 hover:bg-red-700">
-                    {{ t('profile.sessions_whatsapp.connect') }}
-                </PrimaryButton>
-                <DangerButton v-if="isConnected" @click="disconnectWhatsApp" class="text-white bg-gray-600 hover:bg-gray-700">
-                    {{ t('profile.sessions_whatsapp.disconnect') }}
-                </DangerButton>
-            </div>
-
-            <DialogModal :show="showModal" @close="closeModal">
-                <template #title>
-                    {{ t('profile.sessions_whatsapp.connect_whatsapp') }}
-                </template>
-
-                <template #content>
-                    <p class="text-gray-600 dark:text-gray-400">
-                        {{ t('profile.sessions_whatsapp.qr_code') }}
-                    </p>
-                    <div class="flex justify-center mt-4">
-                        <div v-if="loading" class="flex items-center justify-center w-48 h-48 border-2 border-red-600">
-                            <svg class="w-8 h-8 text-gray-600 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                        </div>
-                        <img v-if="!loading && qrCode" :src="qrCode" alt="Código QR de WhatsApp" class="w-48 h-48 border-2 border-red-600">
-                    </div>
-                </template>
-
-                <template #footer>
-                    <SecondaryButton @click="closeModal" class="mr-2 text-gray-800 bg-gray-200 hover:bg-gray-300">
-                        {{ t('profile.sessions_whatsapp.cancel') }}
-                    </SecondaryButton>
-                </template>
-            </DialogModal>
-        </template>
-    </ActionSection>
-</template>
-
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 import { useForm } from '@inertiajs/vue3';
@@ -137,6 +80,61 @@ onUnmounted(() => {
 });
 </script>
 
-<style scoped>
-/* Agrega tus estilos personalizados aquí */
-</style>
+
+<template>
+    <ActionSection>
+        <template #title>
+            {{ t('profile.sessions_whatsapp.connect_whatsapp') }}
+        </template>
+
+        <template #description>
+            {{ t('profile.sessions_whatsapp.description') }}
+        </template>
+
+        <template #content>
+            <div class="max-w-xl text-sm text-gray-600 dark:text-gray-400" v-if="!isConnected">
+                {{ t('profile.sessions_whatsapp.content') }}
+            </div>
+            <div class="max-w-xl text-sm text-gray-600 dark:text-gray-400" v-else>
+                {{ t('profile.sessions_whatsapp.connected') }}
+            </div>
+
+            <div class="mt-5">
+                <PrimaryButton v-if="!isConnected" @click="connectWhatsApp" class="text-white bg-red-600 hover:bg-red-700">
+                    {{ t('profile.sessions_whatsapp.connect') }}
+                </PrimaryButton>
+                <DangerButton v-if="isConnected" @click="disconnectWhatsApp" class="text-white bg-gray-600 hover:bg-gray-700">
+                    {{ t('profile.sessions_whatsapp.disconnect') }}
+                </DangerButton>
+            </div>
+
+            <DialogModal :show="showModal" @close="closeModal">
+                <template #title>
+                    {{ t('profile.sessions_whatsapp.connect_whatsapp') }}
+                </template>
+
+                <template #content>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        {{ t('profile.sessions_whatsapp.qr_code') }}
+                    </p>
+                    <div class="flex justify-center mt-4">
+                        <div v-if="loading" class="flex items-center justify-center w-48 h-48 border-2 border-red-600">
+                            <svg class="w-8 h-8 text-gray-600 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </div>
+                        <img v-if="!loading && qrCode" :src="qrCode" alt="Código QR de WhatsApp" class="w-48 h-48 border-2 border-red-600">
+                    </div>
+                </template>
+
+                <template #footer>
+                    <SecondaryButton @click="closeModal" class="mr-2 text-gray-800 bg-gray-200 hover:bg-gray-300">
+                        {{ t('profile.sessions_whatsapp.cancel') }}
+                    </SecondaryButton>
+                </template>
+            </DialogModal>
+        </template>
+    </ActionSection>
+</template>
+
